@@ -6,26 +6,26 @@ use socialNetwork;
 
 -- Create Tables tUser, tFriends, tWall
 CREATE TABLE tUser(
-	User_id int(11) PRIMARY KEY,
-	Name varchar(50) NOT NULL,
-	Email_id varchar(50) NOT NULL,
-	Password varchar(50) NOT NULL,
-	Address varchar(100),
-	Phone bigint(18)
+	user_id int(11) PRIMARY KEY,
+	name varchar(50) NOT NULL,
+	email_id varchar(50) NOT NULL,
+	password varchar(50) NOT NULL,
+	address varchar(100),
+	phone bigint(18)
 );
 
 CREATE TABLE tFriends(
 	user_id int, 
 	friend_id int,
-	FOREIGN KEY(user_id) REFERENCES tUser(User_id),
-	FOREIGN KEY(friend_id) REFERENCES tUser(User_id)
+	FOREIGN KEY(user_id) REFERENCES tUser(user_id),
+	FOREIGN KEY(friend_id) REFERENCES tUser(user_id)
 );
 
 CREATE TABLE tWall(
 	user_id int 
 	posting_date datetime DEFAULT CURRENT_TIMESTAMP,
 	post varchar(200) NOT NULL
-	FOREIGN KEY(user_id) REFERENCES tUser(User_id)
+	FOREIGN KEY(user_id) REFERENCES tUser(user_id)
 );
 
 -- Insert Values into the tables
@@ -51,48 +51,70 @@ INSERT INTO tWall VALUES
 
 --Queries for the questions asked
 -- 2
-SELECT * FROM tUser WHERE Name = 'Bob Jones' ;
+SELECT 
+	* 
+FROM 
+	tUser 
+WHERE 
+	name = 'Bob Jones' ;
 
 -- 3
-SELECT Name,posting_date,post 
-FROM tUser u
-JOIN tWall w
-ON u.User_id = w.user_id 
-WHERE u.name = 'Alice Smith';
+SELECT 
+	u.name,
+	w.posting_date,
+	w.post 
+FROM 
+	tUser u
+	LEFT JOIN tWall w ON u.user_id = w.user_id 
+WHERE 
+	u.name = 'Alice Smith';
 
 
 --4
-SELECT u.Name as Name, t.Name as Friend, posting_date, post
-FROM tWall w
-JOIN tFriends f
-ON w.user_id = f.friend_id
-JOIN tUser t
-ON f.friend_id = t.User_id 
-JOIN tUser u
-ON f.user_id = u.User_id
-WHERE t.name = "Alice Smith" AND u.name = 'Charlie Brown';
+SELECT 
+	up.name as Name, 
+	uf.name as Friend, 
+	w.posting_date, 
+	w.post
+FROM 
+	tWall w
+	LEFT JOIN tFriends f ON w.user_id = f.friend_id
+	LEFT JOIN tUser uf ON f.friend_id = uf.user_id 
+	LEFT JOIN tUser up ON f.user_id = up.user_id
+WHERE 
+	uf.name = "Alice Smith" AND up.name = 'Charlie Brown';
 
 --5
-SELECT fof.name as Friends 
-FROM tUser fof
-JOIN tFriends ft ON fof.User_id = ft.friend_id
-JOIN tFriends ut ON ft.user_id = ut.friend_id
-JOIN tUser f ON ut.friend_id = f.User_id
-JOIN tUser u ON ut.user_id = u.User_id
-WHERE  f.Name = 'Alice Smith' AND u.Name = 'Bob Jones';
+SELECT 
+	ufof.name as Friends 
+FROM 
+	tUser ufof
+	LEFT JOIN tFriends ff ON ufof.user_id = ff.friend_id
+	LEFT JOIN tFriends fp ON ff.user_id = fp.friend_id
+	LEFT JOIN tUser uf ON fp.friend_id = uf.user_id
+	LEFT JOIN tUser up ON fp.user_id = up.user_id
+WHERE  
+	uf.name = 'Alice Smith' AND up.name = 'Bob Jones';
 
 --6
--- DELETE FROM tFriends f
--- WHERE (f.user_id = (SELECT user_id FROM tUser WHERE Name= 'Alice Smith' ) AND f.friend_id = (SELECT user_id FROM tUser WHERE Name= 'Bob Jones' ))
--- OR (f.user_id = (SELECT user_id FROM tUser WHERE Name= 'Bob Jones' ) AND f.friend_id = (SELECT user_id FROM tUser WHERE Name= 'Alice Smith' ));
-
-DELETE FROM tFriends f
-WHERE f.user_id IN (SELECT user_id FROM tUser WHERE Name IN ('Alice Smith', 'Bob Jones' ))
-AND f.friend_id IN (SELECT user_id FROM tUser WHERE Name IN ('Bob Jones', 'Alice Smith' ));
+DELETE
+	f
+FROM 
+	tFriends f
+	LEFT JOIN tUser up ON f.user_id = up.user_id
+	LEFT JOIN tUser uf ON uf.user_id = f.friend_id
+WHERE
+	up.name = 'Alice Smith' AND uf.name = 'Bob Jones';
 
 
 --7
-INSERT INTO tWall
-SELECT User_id, CURRENT_TIMESTAMP, 'Hello! New Post'
-FROM tUser
-WHERE tUser.name = "Diana Prince";
+INSERT INTO 
+	tWall
+SELECT 
+	user_id, 
+	CURRENT_TIMESTAMP,
+	'Hello! New Post'
+FROM
+	tUser
+WHERE 
+	name = "Diana Prince";
