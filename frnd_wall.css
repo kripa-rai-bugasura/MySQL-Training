@@ -9,6 +9,7 @@ body {
 	color: #36393D;
 }
 
+/* wall styling */
 #mypage_walls {
 	position: relative;
 	min-height: 100vh; 
@@ -29,12 +30,24 @@ main {
 	background-color: #FFFFFF;
 }
 
+/* post styling */
 .card {
 	border: 1px solid black;
 	padding: 10px;
 	margin: auto;
+	border-bottom: none;
 }
 
+/* add bottom border to the last post */
+.card:last-child {
+	border-bottom: 1px solid black;
+}
+
+.card .date {
+	font-size: small;
+}
+
+/* home page link styling */
 footer {
     position: absolute;
     bottom: 10px;
