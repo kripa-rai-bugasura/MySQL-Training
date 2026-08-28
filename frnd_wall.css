@@ -1,0 +1,43 @@
+* {
+	box-sizing: border-box;
+}
+
+/* basic styling for the page */
+body {
+	margin: 0;
+	background-color: #FFFFFF;
+	color: #36393D;
+}
+
+#mypage_walls {
+	position: relative;
+	min-height: 100vh; 
+    padding-bottom: 60px;
+}
+
+/* header styles */
+header {
+	background-color: #3F4C6B;
+	text-align: center;
+	color: #FFFFFF;
+	padding: 25px;
+}
+
+main {
+	margin : 10px;
+	padding: 20px;
+	background-color: #FFFFFF;
+}
+
+.card {
+	border: 1px solid black;
+	padding: 10px;
+	margin: auto;
+}
+
+footer {
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    padding: 0;
+}

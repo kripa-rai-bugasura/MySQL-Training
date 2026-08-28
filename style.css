@@ -1,0 +1,79 @@
+* {
+	box-sizing: border-box;
+}
+
+/* basic styling for the page */
+body {
+	margin: 0;
+	font-family: Arial, sans-serif;
+	background-color: #FFFFFF;
+	color: #36393D;
+}
+
+/* header styles */
+#mypage_header {
+	background-color: #3F4C6B;
+	text-align: center;
+	color: #FFFFFF;
+	padding: 25px;
+}
+
+#mypage_header h1 a{
+	text-decoration: none;
+	color: inherit;
+}
+
+#mypage_body {
+	margin: 20px auto;
+	width: 98%;
+	padding: 20px;
+	background-color: #FFFFFF;
+}
+
+#mypage_body section {
+	width: 100%;
+	padding: 20px;
+	line-height: 1.6;
+	margin: 20px 0px;
+	border: 1px solid #EEEEEE;
+}
+
+#mypage_friends ol li a {
+	text-decoration: none;
+}
+
+.walls {
+	background-color: #FFFFFF;
+	border-radius: 8px;
+	border: 1px solid #e5e5e5;
+}
+
+.wall-post {
+	display: flex;
+	align-items: center;
+	min-height: 60px;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+.wall-post:last-child {
+	border-bottom: none;
+}
+
+.post-date {
+	width: 220px;
+	border: 1p solid #e5e5e5;
+	padding: 15px 20px;
+	font-size: 14px;
+	background-color: #fafafa;
+}
+
+.post-content {
+	flex: 1;
+	padding: 15px 20px;
+	color: #333333;
+	font-size: 15px;
+}
+
+.wall-post:hover {
+	background-color: #f8f9fa;
+}

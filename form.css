@@ -1,0 +1,169 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+/* basic styling for the page */
+body {
+	margin: 0;
+	font-family: Arial, sans-serif;
+	background-color: #91b7d2;
+	/* cfdddd */
+	color: #36393D;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	min-height: 100vh;
+}
+
+#forms {
+	margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 650px;
+}
+
+form {
+	margin-bottom: 20px;
+	padding: 15px;
+	border: 3px solid #EEEEEE;
+	border-radius: 10px;
+	background-color: #C3D9FF;
+	box-shadow: 20px 20px 60px #97a1a1, -20px -20px 60px #adcfe8;
+}
+
+form .form-header {
+	background-color: #3F4C6B;
+	text-align: center;
+	color: #FFFFFF;
+	padding: 25px;
+	border-radius: 10px;
+	margin-bottom: 10px;
+}
+
+form .form-body {
+	width: 70%;
+	margin: auto;
+}
+
+form .form-ele {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 5px ;
+	margin-left: 5px ;
+}
+
+
+form label {
+	margin: 5px;
+	color: #6b7ca3;
+	text-shadow: 1px 0.5px 0.5px #3F4C6B;
+}
+
+form input, form textarea {
+	padding: 8px;
+	margin: 5px;
+	border-radius: 5px ;
+}
+
+form input:not([type="submit"]), form textarea {
+	width: 100%;
+	max-width: 400px;
+}
+
+.submit {
+	margin: auto ;
+	width: 30%;
+}
+form input[type="submit"] {
+	background-color: #3F4C6B;
+	color: #FFFFFF;
+	cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+	background-color: #36393D;
+	color: #FFFFFF;
+}
+
+.error {
+	color: red;
+	margin-left: 10px ;
+}
+
+.form-error {
+	color:red;
+	margin: auto;
+}
+
+.success {
+	color: #027b14;
+	text-align: center;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+#footer {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+}
+
+
+/* 
+body {
+    padding: 20px;
+}
+
+
+#forms {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 500px;
+}
+
+form {
+    background-color: #ffffff; 
+    padding: 20px;
+    border: 1px solid #EEEEEE;
+    border-radius: 10px;
+    width: 100%;
+}
+
+form .form-ele {
+    display: flex; 
+    flex-direction: column;
+    margin-bottom: 12px;
+}
+
+form input, form textarea {
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: inherit;
+}
+
+form input:not([type="submit"]), form textarea {
+    width: 100%;
+}
+
+form input[type="submit"] {
+    padding: 8px 12px;
+    background-color: #3F4C6B;
+    color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+    width: auto;
+    margin-top: 10px;
+}
+
+form input[type="submit"]:hover {
+    background-color: #36393D;
+} */

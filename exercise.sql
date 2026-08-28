@@ -22,9 +22,9 @@ CREATE TABLE tFriends(
 );
 
 CREATE TABLE tWall(
-	user_id int 
+	user_id int, 
 	posting_date datetime DEFAULT CURRENT_TIMESTAMP,
-	post varchar(200) NOT NULL
+	post varchar(200) NOT NULL,
 	FOREIGN KEY(user_id) REFERENCES tUser(user_id)
 );
 
