@@ -4,6 +4,7 @@
 	$password = "PHP@Bug26!";
 	$dbname = "socialNetwork";
 
+	// connect to the database
 	$conn = mysqli_connect($servername, $username, $password, $dbname);
 	if(!$conn)
 	{

@@ -3,27 +3,35 @@
 
 	$user_id = isset($_GET["user_id"])? intval($_GET["user_id"]) : 0;
 
+	$success = $error = '';
 
-	if(!empty(test_input($_POST["post"])))
+	if(!empty($_POST["post"]))
 	{
-		$post = test_input($_POST["post"]);
+		$post = $_POST["post"];
 
-		$res = mysqli_query($conn, "INSERT INTO tWall VALUES ($user_id, CURRENT_TIMESTAMP,'$post');");
-		if(mysqli_error($conn))
+		// check if the post length exceeds the limit
+		if(strlen($post)>200)
 		{
-			die("Failed to post".mysqli_error($conn));
+			$error = "Maximum string length exceeded";
+		}
+		else {
+		// add post to the wall
+		$res = mysqli_query($conn, "INSERT INTO 
+										tWall 
+									VALUES 
+										($user_id, CURRENT_TIMESTAMP,'$post');"
+							);
+			if(mysqli_error($conn))
+			{
+				$error = "Failed to post".mysqli_error($conn);
+			}
 		}
 	}
 	else {
-		die("Failed to post");
+		$error = "Failed to post";
 	}
 
-	function test_input($data) {
-		$data = trim($data);
-		$data = stripslashes($data);
-		$data = htmlspecialchars($data);
-		return $data;
-	};
+
 
 ?>
 
@@ -36,6 +44,20 @@
 	<link href="post.css" rel="stylesheet">
 </head>
 <body>
+	<?php if($error != ''): ?>
+	<div class = "error-card">
+		<header>
+			<h2>Error</h2>
+		</header>
+		<div class="card">
+			<p><?php echo $error?></p>
+		</div>
+		<div id="error_footer">
+			<p><a href="form.php?user_id=<?php echo $user_id; ?>">Return </a></p>
+		</div>
+	</div>
+	
+	<?php else: ?>
 	<div id="content">
 		<header>
 			<h2>New Post:</h2>
@@ -44,8 +66,9 @@
 			<p><strong><?php echo $post ?></strong></p>
 		</div>
 	</div>
+	<?php endif; ?>
 	<div id="footer">
-		<p><a href="index.php?user_id=<?php echo $user_id; ?>">Go back to Home Page</a></p>
+		<p><a href="index.php?user_id=<?php echo $user_id; ?>">Go back</a></p>
 	</div>
 </body>
 </html>

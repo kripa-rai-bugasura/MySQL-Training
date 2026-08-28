@@ -4,16 +4,42 @@
 	$user_id = isset($_GET["user_id"])? intval($_GET["user_id"]) : 0;
 
 
-	$res = mysqli_query($conn,"SELECT * FROM tUser WHERE user_id= $user_id");
+	// fetch user from the tUser table using his id
+	$res = mysqli_query($conn,"SELECT 
+									*
+								FROM 
+									tUser 
+								WHERE 
+									user_id= $user_id");
 	$user = mysqli_fetch_assoc($res); 
 
+	// Return when user not found
 	if(!$user)
 	{
 		die("No User found");
 	}
-	$friends = mysqli_query($conn, "SELECT u.user_id, u.name FROM tFriends f LEFT JOIN tUser u ON f.friend_id = u.user_id WHERE f.user_id=$user_id");
 
-	$walls = mysqli_query($conn, "SELECT * FROM tWall WHERE user_id = $user_id ORDER BY posting_date DESC" );
+	// fetch friends for that user
+	$friends = mysqli_query($conn, "SELECT 
+										u.user_id, 
+										u.name 
+									FROM 
+										tFriends f 
+										LEFT JOIN tUser u ON f.friend_id = u.user_id 
+									WHERE 
+										f.user_id=$user_id;"
+							);
+
+	// fetch user's posts
+	$walls = mysqli_query($conn, "SELECT 
+										* 
+									FROM 
+										tWall 
+									WHERE 
+										user_id = $user_id 
+									ORDER BY 
+										posting_date DESC;" 
+						);
 ?>
 
 <!DOCTYPE html>
@@ -34,6 +60,8 @@
 
 		<!-- PAGE BODY -->
 		<div id="mypage_body">
+
+				<!-- display friends -->
 				<section id="mypage_friends">
 					<h2> Friends: </h2>
 					<?php
@@ -49,6 +77,8 @@
 						}
 					?>
 				</section>
+
+				<!-- display posts -->
 				<section id="mypage_walls">
 					<h2> Walls: </h2>
 					<div class="walls">

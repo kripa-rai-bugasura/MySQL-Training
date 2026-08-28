@@ -4,29 +4,31 @@
 	padding: 0;
 }
 
-/* basic styling for the page */
+
 body {
-	margin: 0;
 	font-family: Arial, sans-serif;
 	background-color: #C3D9FF;
 	color: #36393D;
 	min-height: 100vh;
 	display: flex;
+	flex-direction: column; 
 	justify-content: center;
 	align-items: center;
 	padding: 20px;
-	position: relative;
 }
 
-#content {
+/* Card styling */
+#content, .error-card {
 	width: 100%;
 	max-width: 600px;
 	padding: 25px;
 	background-color: #FFFFFF;
 	border: 2px solid #3F4C6B;
 	border-radius: 8px;
+	margin-bottom: 60px; 
 }
 
+/* Card header */
 header {
 	background-color: #3F4C6B;
 	text-align: center;
@@ -35,15 +37,40 @@ header {
 	margin-bottom: 20px;
 }
 
+/* Error or post card */
 .card {
 	background-color: #CDEB8B;
 	border: 2px solid #006E2E;
-	width: 100% ;
+	width: 100%;
 	padding: 40px 20px;
-	text-align: center ;
+	text-align: center;
 	border-radius: 4px;
 }
 
+/* Error specific card styling */
+.error {
+	color: red;
+	text-align: center;
+}
+
+.error-card header {
+	background-color: #c44b1f;
+	color: #EEEEEE; 
+}
+
+.error-card .card {
+	background-color: bisque;
+	color: red;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#error_footer {
+	margin-top: 20px;
+	text-align: right;
+}
+
+/* home page link styling  */
 #footer {
 	position: absolute;
 	bottom: 20px;
