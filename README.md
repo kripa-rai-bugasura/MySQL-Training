@@ -1,1 +1,1 @@
-# MySQL-Training
+# AJAX-Training
