@@ -18,7 +18,9 @@
 									FROM 
 										tWall 
 									WHERE 
-										user_id = $frnd_id;" 
+										user_id = $frnd_id
+									ORDER BY 
+										posting_date DESC;" 
 						);
 ?>
 <!DOCTYPE html>

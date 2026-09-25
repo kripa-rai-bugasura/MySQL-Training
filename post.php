@@ -16,15 +16,17 @@
 		}
 		else {
 		// add post to the wall
-		$res = mysqli_query($conn, "INSERT INTO 
+		$stmt = mysqli_prepare($conn, "INSERT INTO 
 										tWall 
 									VALUES 
-										($user_id, CURRENT_TIMESTAMP,'$post');"
+										(?, CURRENT_TIMESTAMP, ?);"
 							);
-			if(mysqli_error($conn))
-			{
-				$error = "Failed to post".mysqli_error($conn);
-			}
+		mysqli_stmt_bind_param($stmt, "is", $user_id, $post);
+		mysqli_stmt_execute($stmt);
+		if(mysqli_error($conn))
+		{
+			$error = "Failed to post".mysqli_error($conn);
+		}
 		}
 	}
 	else {
