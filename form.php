@@ -66,7 +66,9 @@
 			$phone = $phone=='' ? null : $phone; 
 
 			// Update values in the database
-			mysqli_query($conn,"UPDATE tUser SET name='".$name."', email_id='".$mail."', password='".$password."', address='".$address."', phone='".$phone."' WHERE user_id=$user_id");
+			$stmt = mysqli_prepare($conn,"UPDATE tUser SET name= ?, email_id= ?, password= ?, address= ?, phone= ? WHERE user_id= ?");
+			mysqli_stmt_bind_param($stmt, "ssssii", $name, $mail, $password, $address, $phone, $user_id);
+			mysqli_stmt_execute($stmt);
 			if(mysqli_error($conn)) {
 				$error = "Failed to Update: ".mysqli_error($conn); 
 			} else {

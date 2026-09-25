@@ -1,8 +1,10 @@
 <?php
-	$servername = "localhost";
-	$username = "php_user";
-	$password = "PHP@Bug26!";
-	$dbname = "socialNetwork";
+
+	$config = require('config.php');
+	$servername = $config['servername'];
+	$username = $config['username'];
+	$password = $config['password'];
+	$dbname = $config['dbname'];
 
 	// connect to the database
 	$conn = mysqli_connect($servername, $username, $password, $dbname);

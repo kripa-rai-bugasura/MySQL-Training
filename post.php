@@ -17,12 +17,13 @@
 		}
 
 		// add post to the wall
-		$res = mysqli_query($conn, "INSERT INTO 
-										tWall 
-									VALUES 
-										($user_id, CURRENT_TIMESTAMP,'$post');"
+		$stmt = mysqli_prepare($conn, "INSERT INTO  
+											tWall 
+										VALUES 
+											(?, CURRENT_TIMESTAMP, ?);"
 							);
-
+		mysqli_stmt_bind_param($stmt, "is", $user_id, $post);
+		mysqli_stmt_execute($stmt);
 		if(mysqli_error($conn))
 		{
 			$success = '';
